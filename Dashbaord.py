@@ -1,3 +1,6 @@
+
+
+# 'Source: '+g2_source+'     Last update: '+g2_last_update
 ### python -m bokeh serve --show Dashbaord.py
 
 import pandas as pd
@@ -8,6 +11,9 @@ from bokeh.models.widgets import Dropdown
 from bokeh.layouts import column
 import copy
 
+## the first graph is about statewide new cases
+g1_last_update = '2020-11-01'
+g1_source = 'Los Angeles Times'
 ## define text for intro
 pre = PreText(text="""
 Use the dropdown menu below to select the option. You can choose the new confirmed case or new death case for California in August, 2020.
@@ -26,7 +32,8 @@ width = 1200 # plot width
 data['date_time']=pd.to_datetime(data['date'])
 df = pd.DataFrame({'x':data['date_time'],'y':data['new_confirmed_cases']})
 source = ColumnDataSource(df)
-p=figure(y_axis_label='Number of New Cases',title='New Cases vs. Date',
+p=figure(y_axis_label='Number of New Cases',title='New Cases vs. Date\n\n      '+\
+         'Source: '+g1_source+'     Last update: '+g1_last_update,
          x_axis_label='Date',x_axis_type='datetime',plot_width=width)
 r = p.line('x','y',source=source)
 p.add_tools(HoverTool(tooltips=[('date','@x{%Y-%m-%d}'),
@@ -45,7 +52,8 @@ dropdown_state = Dropdown(label="Case confirmed or death", button_type="warning"
 dropdown_state.on_click(update)
 
 ### second graph for races
-
+g2_last_update = '2020-11-01'
+g2_source = 'California Department of Public Health'
 ## define a pretext as a textbox
 pre2 = TextAreaInput(value="""Use the dropdown menu below to select the option. You can choose the confirmed case percentage or death case percentage by rance for
 California in August, 2020. Your selections will be displayed in the boxes below. Hover on the line to see the details of a
@@ -71,7 +79,8 @@ data_x = np.array(subset['date_time'],dtype=np.datetime64)
 data_y = np.array(subset['confirmed_cases_percent'])
 df2 = pd.DataFrame({'x':data_x,'y':data_y})
 source2 = ColumnDataSource(df2)
-p2=figure(y_axis_label='Total Percentage',title='Tatoal Percentage by Race vs. Date',
+p2=figure(y_axis_label='Total Percentage',title='Tatoal Percentage by Race vs. Date\n\n     '+\
+          'Source: '+g2_source+'     Last update: '+g2_last_update,
          x_axis_label='Date',x_axis_type='datetime',plot_width=width)
 r2 = p2.line('x','y',source=source2)
 p2.add_tools(HoverTool(tooltips=[('date','@x{%Y-%m-%d}'),
@@ -109,9 +118,6 @@ dropdown_race.on_click(update_race)
 layout = column(pre, dropdown_state,textbox,p, pre2,
                 dropdown_race,dropdown_race_type,textbox2,textbox3,p2)
 curdoc().add_root(layout)
-
-
-
 
 
 
