@@ -40,11 +40,11 @@ cd "C://Users//your//name//Covid_Data_Vis"
 ```
 - Run the following command to build your image named as "Dashboard".
  ```bash
-docker build --tag Dashboard:1.0 .
+docker build --tag dashboard:1.0 .
 ```
 - After the image has been successfully built. You can run the following command to execute your image.
  ```bash
-docker run -p 5006:5006 -it Dashboard:1.0
+docker run -p 5006:5006 -it dashboard:1.0
 ```
 - Once it has been served, open your browser and go to the link below to access to the dashboard being served.
  ```bash
