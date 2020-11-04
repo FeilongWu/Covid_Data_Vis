@@ -38,7 +38,7 @@ python -m bokeh serve --show Dashbaord.py
  ```bash
 cd "C://Users//your//name//Covid_Data_Vis"
 ```
-- Run the following command to build your image named as "Dashboard".
+- Run the following command to build your image named as "dashboard".
  ```bash
 docker build --tag dashboard:1.0 .
 ```
