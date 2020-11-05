@@ -7,7 +7,7 @@
 git clone https://github.com/FeilongWu/Covid_Data_Vis.git
 ```
 ### All the commands below are executed using Command Prompt unless specified otherwise.
-- If you want to create a virtual ennvironment under the directory of the cloned repository, you need to go to the repository you just cloned. The directory may vary for different users. An example command is shown below:
+- Set the repository you just cloned as your working directory. The directory may vary for different users. An example command is shown below:
 ```bash
 cd "C://Users//your//name//Covid_Data_Vis"
 ```
@@ -21,7 +21,7 @@ pip install --user virtualenv
 python -m venv Covid_vis
 .\Covid_vis\Scripts\activate
 ```
-- Install dependency(ies). If you do not have "requirements.txt" under your working directory, you can copy it from the repository and paste it under your working directory:
+- Install dependency(ies) for the environment.:
 ```bash
 pip install -r requirements.txt
 ```
@@ -29,7 +29,7 @@ pip install -r requirements.txt
  ```bash
 pip freeze > requirements.txt
 ```
-- Assum you have "Dashboard.py" under you working directory. Use <strong>bokeh serve</strong> to execute it:
+- Use <strong>bokeh serve</strong> to execute Python script to launch the visualization:
  ```bash
 python -m bokeh serve --show Dashboard.py
 ```
