@@ -7,7 +7,7 @@
 git clone https://github.com/FeilongWu/Covid_Data_Vis.git
 ```
 ### All the commands below are executed using Command Prompt unless specified otherwise.
-- Set the repository you just cloned as your working directory. The directory may vary for different users. An example command is shown below:
+- Set the repository you just cloned as your working directory. The path to the directory may vary for different users. An example command is shown below:
 ```bash
 cd "C://Users//your//name//Covid_Data_Vis"
 ```
