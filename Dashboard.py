@@ -7,7 +7,7 @@ import numpy as np
 from bokeh.plotting import figure,show,ColumnDataSource,curdoc
 from bokeh.models import DateFormatter,DatePicker
 from bokeh.models import ColumnDataSource as ColumnDataSource1
-from bokeh.models import HoverTool,PreText, TextAreaInput, DataTable, TableColumn, Label
+from bokeh.models import HoverTool,PreText, TextAreaInput, DataTable, TableColumn,Title
 from bokeh.models.widgets import Dropdown
 from bokeh.layouts import column
 import copy
@@ -20,16 +20,15 @@ def getDate(url):
 ## the first graph is about statewide new cases
 url1 = 'latimes-state-totals.csv'
 g1_last_update = getDate(url1)
-g1_source = 'aggregation of all local agency reports logged by Los Angeles Times. '+\
+g1_source = 'aggregation of all local agency reports logged by Los Angeles Times for California statewide. '+\
             'URL: '+'https://github.com/datadesk/california-coronavirus-data/blob/master/latimes-state-totals.csv'
 ## define text for intro
 pre = PreText(text="""
 Use the dropdown menu below to select the option. You can choose the new confirmed case or new death case for California in August, 2020.
 Your selection will be displayed in the box below. Hover on the line to see the details of a particular day. If the data is missing
-for a particular day, this means that the data is not available in the dataset. The source and the date for last update are displayed
-at the bottom of the plot.
+for a particular day, this means that the data is not available in the dataset. 
 """,
-width=500, height=120)
+width=500, height=120,default_size=12)
 ## define text box
 textbox = TextAreaInput(value='New confirmed cases', rows=1, title='You are viewing:')
 data = pd.read_csv(url1)
@@ -58,13 +57,10 @@ def update(event):
 menu_type = [('New confirmed cases',"Cases"),('Deaths',  "Deaths")]
 dropdown_state = Dropdown(label="Case confirmed or death", button_type="warning", menu=menu_type)
 dropdown_state.on_click(update)
-citation = Label(x=0, y=10,x_units='screen', y_units='screen',
-                 text='Source: '+g1_source+'.   Last update: '+g1_last_update, render_mode='css',
-                 border_line_color='black', border_line_alpha=1.0,
-                 background_fill_color='white', background_fill_alpha=1.0,
-                 text_font_size='10.5px')
-p.add_layout(citation)
-
+citation1 = Title(text='Source: '+g1_source,text_font_size='11px')
+citation2 = Title(text='Last update: '+g1_last_update,text_font_size='11px')
+p.add_layout(citation1, 'above')
+p.add_layout(citation2, 'above')
 
 
 
@@ -94,14 +90,12 @@ def update1(attr,old,new):
     table.source=source2
     
 t_last_update = getDate(url2)
-t_source = 'data provided by California Department of Public Health. URL: '+\
+t_source = 'California statewide data provided by California Department of Public Health on tallying race\n totals. URL: '+\
            'https://github.com/datadesk/california-coronavirus-data/blob/master/cdph-race-ethnicity.csv'
 ## define a pretext as a textbox
-pre2 = TextAreaInput(value="""Use the date picker below to select a date. Both columns 'Confirmed_cases_percent' and 'Deaths_percent' refer to the cumulative confirmed cases and deaths for
+pre2=PreText(text="""Use the date picker below to select a date. Both columns 'Confirmed_cases_percent' and 'Deaths_percent' refer to the cumulative confirmed cases and deaths for
 a particular race over the population of that race, respectively. The column 'Population_percent' refers to the population of a race over the population of all.
-The data is showing the cases (confirmed or death) for all age. Missing data is displayed as 'N/A'. The source and the date for last update are displayed in the box
-below the date picker""", rows=5)
-
+The data is showing the cases (confirmed or death) for all age. Missing data is displayed as 'N/A'. The source and the date for last update are displayed below the date picker.""",width=500, height=100,default_size=12)
 
 data_race = pd.read_csv(url2)
 class raceTable():
@@ -179,7 +173,7 @@ columns = [TableColumn(field="race",title="Race"),
 table = DataTable(source=source2,columns=columns, width=width, height=500)
 date_picker = DatePicker(title='Select a date', value="2020-10-26", min_date="2020-05-01", max_date="2020-11-02")
 date_picker.on_change('value',update1)
-pre3 = TextAreaInput(value='Source: '+t_source+'\nLast update: '+t_last_update, rows=3)
+pre3=PreText(text='Source: '+t_source+'\nLast update: '+t_last_update,width=500, height=45)
 layout = column(pre, dropdown_state,textbox,p, pre2,
                 date_picker,pre3,table)
 curdoc().add_root(layout)

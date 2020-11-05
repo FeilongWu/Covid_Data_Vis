@@ -29,12 +29,12 @@ pip install -r requirements.txt
  ```bash
 pip freeze > requirements.txt
 ```
-- Assum you have "Dashbaord.py" under you working directory. Use <strong>bokeh serve</strong> to execute it:
+- Assum you have "Dashboard.py" under you working directory. Use <strong>bokeh serve</strong> to execute it:
  ```bash
-python -m bokeh serve --show Dashbaord.py
+python -m bokeh serve --show Dashboard.py
 ```
 ### Build your container for using the dashboard
-- Please make sure you have installed [Docker Desktop](https://www.docker.com/products/docker-desktop) in your computer. Also, make sure that your docker daemon is running. In Command Prompt, go to the repository you just cloned. An example command is as below.
+- Refer to the instructions above to clone this repository. Please make sure you have installed [Docker Desktop](https://www.docker.com/products/docker-desktop) in your computer. Also, make sure that your docker daemon is running. In Command Prompt, go to the repository you just cloned. An example command is as below.
  ```bash
 cd "C://Users//your//name//Covid_Data_Vis"
 ```
