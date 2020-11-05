@@ -19,7 +19,8 @@ def getDate(url):
     return string[:string.index(' ')]
 ## the first graph is about statewide new cases
 url1 = 'latimes-state-totals.csv'
-g1_last_update = getDate(url1)
+#g1_last_update = getDate(url1)
+g1_last_update='2020-10-27'
 g1_source = 'aggregation of all local agency reports logged by Los Angeles Times for California statewide. '+\
             'URL: '+'https://github.com/datadesk/california-coronavirus-data/blob/master/latimes-state-totals.csv'
 ## define text for intro
@@ -89,7 +90,8 @@ def update1(attr,old,new):
     source2 = ColumnDataSource1(tableData)
     table.source=source2
     
-t_last_update = getDate(url2)
+#t_last_update = getDate(url2)
+t_last_update='2020-11-02'
 t_source = 'California statewide data provided by California Department of Public Health on tallying race\n totals. URL: '+\
            'https://github.com/datadesk/california-coronavirus-data/blob/master/cdph-race-ethnicity.csv'
 ## define a pretext as a textbox
