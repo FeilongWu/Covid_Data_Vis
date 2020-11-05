@@ -41,7 +41,7 @@ width = 1200 # plot width
 data['date_time']=pd.to_datetime(data['date'])
 df = pd.DataFrame({'x':data['date_time'],'y':data['new_confirmed_cases']})
 source = ColumnDataSource(df)
-p=figure(y_axis_label='Number of New Cases',title='New Cases vs. Date',
+p=figure(y_axis_label='Number of New Cases',title='California New Cases vs. Date',
          x_axis_label='Date',x_axis_type='datetime',plot_width=width)
 r = p.line('x','y',source=source)
 p.add_tools(HoverTool(tooltips=[('date','@x{%Y-%m-%d}'),
